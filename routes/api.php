@@ -20,4 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/createBuku', [bukuController::class, 'createBuku']);
-Route::get('/getBuku', [bukuController::class, 'getBuku']);
+Route::get('/getBuku/{id}', [bukuController::class, 'getBuku']);
