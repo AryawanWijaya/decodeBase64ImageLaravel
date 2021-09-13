@@ -46,22 +46,20 @@ class bukuController extends Controller
     }
 
     public function uploadFoto(Request $request) {
-        $foto = $request->file('foto');
+        $image = $request->file('foto');
 
-        $namaFoto = $request->file('foto')->getClientOriginalName();
-        $path = public_path() . '/fotoBuku/' . $namaFoto;
+        $png_url = $image->getClientOriginalName();
+        $path = public_path() . '/fotoBuku/' . $png_url;
         Buku::create([
-            'namaBuku' => $request->namaBuku,
-            'penerbit' => $request->penerbit,
+            'nama' => $request->nama,
             'foto' => $path
         ]);
 
-        $foto->move(public_path().'/fotoBuku', $namaFoto);
+        $foto->move(public_path().'/fotoBuku', $png_url);
 
         return response()->json([
             'status' => 'berhasil tambah data buku dengan foto',
-            'namaBuku' => $request->namaBuku,
-            'penerbit' => $request->penerbit,
+            'nama' => $request->nama,
             'foto' => $path
         ], 200);
     }
